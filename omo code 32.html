@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laptop Giveaway Countdown Timer</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #545f5783;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  #laptop-image {
+    max-width: 80%;
+    float: left;
+    margin-right: 20px;
+  }
+  .countdown-container {
+    text-align: right;
+  }
+  #countdown {
+    font-size: 7em;
+    color: #333;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <img id="laptop-image" src="c:\Users\User\Desktop\countdown timer\HP-Envy-16-07.webp" alt="Brand New Laptop">
+  <div class="countdown-container">
+    <h1>Brand New Laptop Giveaway!</h1>
+    <h2>Countdown Until Giveaway Ends:</h2>
+    <div id="countdown">00:00:00</div>
+  </div>
+</div>
+
+<script>
+// Set the deadline date and time
+var deadline = new Date("March 3, 2024 12:00:00").getTime();
+
+// Update the countdown every second
+var x = setInterval(function() {
+  // Get the current date and time
+  var now = new Date().getTime();
+
+  // Calculate the remaining time
+  var t = deadline - now;
+
+  // Calculate the days, hours, minutes, and seconds
+  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((t % (1000 * 60)) / 1000);
+
+  // Format the remaining time as a string
+  var formattedTime = ("0" + days).slice(-2) + ":" + ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+
+  // Display the remaining time
+  document.getElementById("countdown").innerHTML = formattedTime;
+
+  // If the deadline has passed, stop the countdown
+  if (t < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "Giveaway has ended!";
+  }
+}, 1000);
+</script>
+</body>
+</html>
